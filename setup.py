@@ -9,4 +9,6 @@ setup(name='quotes_scraper',
       author_email='jlitven@gmail.com',
       license='MIT',
       packages=['quotes_scraper'],
+      entry_points={'console_scripts':
+                    ['quotes_scraper = quotes_scraper.quotes_scraper:main']},
       zip_safe=False)

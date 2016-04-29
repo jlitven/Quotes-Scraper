@@ -1,21 +1,19 @@
-'''
+"""
 Quotes Cacher.
 
 Cache quotes, stored as dictionaries in a .py file.
 
 Joshua Litven 2016.
-'''
+"""
 
 import imp
 import os
 import pprint
-
 from quotes_scraper import scrape_quotes
 
 
 def load_cached_quotes():
-    'Returns quotes in cache.'
-
+    """Return quotes in cache."""
     print 'Loading cached quotes...'
     module = imp.load_source('my_quotes',
                              get_quotes_file())
@@ -24,8 +22,7 @@ def load_cached_quotes():
 
 
 def update_cached_quotes():
-    'Scrapes Goodreads quotes and stores in cache.'
-
+    """Scrape Goodreads quotes and stores in cache."""
     print 'Updating cached quotes...'
     user_id = my_user_id()
     quotes = scrape_quotes(user_id)
@@ -38,7 +35,6 @@ def my_user_id():
 
 
 def get_data_dir():
-
     dir_name = 'quotes'
     path = os.getenv("HOME")
     dir_path = os.path.join(path, dir_name)
@@ -48,6 +44,5 @@ def get_data_dir():
 
 
 def get_quotes_file():
-
     dir_name = get_data_dir()
     return os.path.join(dir_name, 'my_quotes.py')

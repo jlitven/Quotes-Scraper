@@ -1,23 +1,21 @@
-'''
+"""
 Goodreads Quotes Scraper.
 
 Creates quotes from a Goodreads user id.
 
 Joshua Litven 2016.
-'''
+"""
 
 import re
 import sys
-
 from bs4 import BeautifulSoup
-
 import requests
+
+# TODO: Break up scraping
 
 
 class Quote(dict):
-    '''
-    Stores the quote data.
-    '''
+    """Stores the quote data."""
 
     def __init__(self, text, url, author, author_url, image_url):
         self['text'] = text
@@ -95,8 +93,7 @@ def gen_goodreads_quote_pages(user_id):
         page += 1
 
 
-def scrape_quotes(user_id):
-
+def scrape_quotes(user_id, num_quotes=100):
     print 'Scraping Goodread for quotes...'
     quotes = []
     for page in gen_goodreads_quote_pages(user_id):
@@ -105,11 +102,13 @@ def scrape_quotes(user_id):
             quotes.extend(page_quotes)
         else:
             break
+        if len(quotes) >= num_quotes:
+            quotes = quotes[:num_quotes]
+            break
     return quotes
 
 
 def main():
-
     if len(sys.argv) > 1:
         quotes = scrape_quotes(user_id=sys.argv[1])
     else:
