@@ -2,7 +2,7 @@ from setuptools import setup
 
 
 setup(name='quotes_scraper',
-      version='0.1',
+      version='0.2',
       description='Creates quotes from a Goodreads user id.',
       url='https://github.com/jlitven/Quotes-Scraper',
       author='Joshua Litven',
